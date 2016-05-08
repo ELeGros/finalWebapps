@@ -1,0 +1,13 @@
+@(implicit environment: play.api.Environment)
+
+@main("Play with Scala.js") {
+<h2>Draw Stuff So Well Man</h2>
+<ul>
+  <li>if mozilla, press r for red, g for green, b for black, and c to clear</li>
+</ul>
+
+<canvas id="canvas" width="800" height="800" style="border:1px solid #000000;"></canvas>
+<script type="text/javascript">
+	example.ScalaJSExample().start();
+</script>
+}

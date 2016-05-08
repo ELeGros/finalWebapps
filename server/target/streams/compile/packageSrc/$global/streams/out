@@ -1,0 +1,19 @@
+[0m[[0minfo[0m] [0mPackaging /users/elegros/task10/server/target/scala-2.11/server_2.11-0.1-SNAPSHOT-sources.jar ...[0m
+[0m[[0mdebug[0m] [0mInput file mappings:[0m
+[0m[[0mdebug[0m] [0m	models/Bindings.scala[0m
+[0m[[0mdebug[0m] [0m	  /users/elegros/task10/server/app/models/Bindings.scala[0m
+[0m[[0mdebug[0m] [0m	models/Lines.scala[0m
+[0m[[0mdebug[0m] [0m	  /users/elegros/task10/server/app/models/Lines.scala[0m
+[0m[[0mdebug[0m] [0m	models/TaskData.scala[0m
+[0m[[0mdebug[0m] [0m	  /users/elegros/task10/server/app/models/TaskData.scala[0m
+[0m[[0mdebug[0m] [0m	routes[0m
+[0m[[0mdebug[0m] [0m	  /users/elegros/task10/server/conf/routes[0m
+[0m[[0mdebug[0m] [0m	application.conf[0m
+[0m[[0mdebug[0m] [0m	  /users/elegros/task10/server/conf/application.conf[0m
+[0m[[0mdebug[0m] [0m	controllers/Application.scala[0m
+[0m[[0mdebug[0m] [0m	  /users/elegros/task10/server/app/controllers/Application.scala[0m
+[0m[[0mdebug[0m] [0m	ExampleApplicationLoader.scala[0m
+[0m[[0mdebug[0m] [0m	  /users/elegros/task10/server/app/ExampleApplicationLoader.scala[0m
+[0m[[0mdebug[0m] [0m	models/Queries.scala[0m
+[0m[[0mdebug[0m] [0m	  /users/elegros/task10/server/app/models/Queries.scala[0m
+[0m[[0minfo[0m] [0mDone packaging.[0m

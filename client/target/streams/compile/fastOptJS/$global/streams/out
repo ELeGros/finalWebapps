@@ -1,0 +1,16 @@
+[0m[[0minfo[0m] [0mFast optimizing /users/elegros/task10/client/target/scala-2.11/client-fastopt.js[0m
+[0m[[0mdebug[0m] [0mLinker: Compute reachability: 42838 us[0m
+[0m[[0mdebug[0m] [0mLinker: Assemble LinkedClasses: 24999 us[0m
+[0m[[0mdebug[0m] [0mBasic Linking: 69404 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Batch mode: false[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Incremental part: 17700 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizing 1 methods.[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizer part: 2853 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: 23413 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Compute reachability: 37058 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Assemble LinkedClasses: 5084 us[0m
+[0m[[0mdebug[0m] [0mRefiner: 42428 us[0m
+[0m[[0mdebug[0m] [0mEmitter: Class tree cache stats: reused: 0 -- invalidated: 350[0m
+[0m[[0mdebug[0m] [0mEmitter: Method tree cache stats: resued: 1455 -- invalidated: 1[0m
+[0m[[0mdebug[0m] [0mEmitter (write output): 46773 us[0m
+[0m[[0mdebug[0m] [0mGlobal IR cache stats: reused: 4 -- invalidated: 6 -- trees read: 4[0m

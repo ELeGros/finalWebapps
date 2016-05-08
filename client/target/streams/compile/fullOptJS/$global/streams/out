@@ -1,0 +1,19 @@
+[0m[[0minfo[0m] [0mFull optimizing /users/elegros/task10/client/target/scala-2.11/client-opt.js[0m
+[0m[[0mdebug[0m] [0mLinker: Compute reachability: 171041 us[0m
+[0m[[0mdebug[0m] [0mLinker: Assemble LinkedClasses: 295444 us[0m
+[0m[[0mdebug[0m] [0mBasic Linking: 475430 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Batch mode: true[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Incremental part: 137929 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizing 3014 methods.[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: Optimizer part: 295896 us[0m
+[0m[[0mdebug[0m] [0mInc. optimizer: 445691 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Compute reachability: 34783 us[0m
+[0m[[0mdebug[0m] [0mRefiner: Assemble LinkedClasses: 8484 us[0m
+[0m[[0mdebug[0m] [0mRefiner: 44581 us[0m
+[0m[[0mdebug[0m] [0mEmitter: Class tree cache stats: reused: 0 -- invalidated: 349[0m
+[0m[[0mdebug[0m] [0mEmitter: Method tree cache stats: resued: 0 -- invalidated: 1450[0m
+[0m[[0mdebug[0m] [0mEmitter (create Closure trees): 297370 us[0m
+[0m[[0minfo[0m] [0mClosure: 0 error(s), 0 warning(s)[0m
+[0m[[0mdebug[0m] [0mClosure: Compiler pass: 3131285 us[0m
+[0m[[0mdebug[0m] [0mClosure: Write result: 82898 us[0m
+[0m[[0mdebug[0m] [0mGlobal IR cache stats: reused: 0 -- invalidated: 10 -- trees read: 484[0m
