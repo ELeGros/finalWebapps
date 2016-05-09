@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/users/elegros/task10/server/conf/routes
-// @DATE:Sun May 08 16:44:00 CDT 2016
+// @SOURCE:/users/elegros/projectFinal/server/conf/routes
+// @DATE:Sun May 08 20:46:58 CDT 2016
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -14,7 +14,7 @@ import _root_.controllers.Assets.Asset
 package controllers.javascript {
   import ReverseRouteContext.empty
 
-  // @LINE:17
+  // @LINE:19
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -22,7 +22,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:17
+    // @LINE:19
     def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.at",
       """
@@ -42,17 +42,17 @@ package controllers.javascript {
     }
 
   
-    // @LINE:8
-    def ajax: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Application.ajax",
+    // @LINE:10
+    def getPlayers: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.getPlayers",
       """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "ajax"})
+        function(playerID0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "getPlayers/" + (""" + implicitly[PathBindable[Int]].javascriptUnbind + """)("playerID", playerID0)})
         }
       """
     )
   
-    // @LINE:14
+    // @LINE:16
     def sendLine: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.sendLine",
       """
@@ -62,12 +62,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:10
-    def poll: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Application.poll",
+    // @LINE:8
+    def addPlayer: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.addPlayer",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "poll"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "addPlayer"})
+        }
+      """
+    )
+  
+    // @LINE:12
+    def movePlayer: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.movePlayer",
+      """
+        function(playerID0,dir1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "movePlayer/" + (""" + implicitly[PathBindable[Int]].javascriptUnbind + """)("playerID", playerID0) + "/" + (""" + implicitly[PathBindable[Char]].javascriptUnbind + """)("dir", dir1)})
         }
       """
     )
@@ -82,7 +92,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:12
+    // @LINE:14
     def clear: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.clear",
       """

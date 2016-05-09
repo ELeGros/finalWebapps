@@ -21,12 +21,18 @@ class Application @Inject()(environment: Environment, dbConfigProvider: Database
 	  Ok(views.html.task(environment))
   }
   
-  def ajax = Action { implicit request =>
-    Ok("AJAX")
+  def addPlayer = Action { implicit request =>
+    Ok(models.Player.addPlayer.toString)
+  }
+  def getPlayers(playerID:Int) = Action { implicit request =>
+    Ok(models.Player.getPlayers(playerID))
   }
   
-  def poll = Action { implicit request =>
-    Ok(models.Line.poll)
+  def movePlayer(playerID:Int, dir:Char) = Action { implicit request =>
+    models.Player.addKey(dir)
+    models.Player.movePlayer(playerID, dir)
+    models.Player.removeKey(dir)
+    Ok("GOOD")
   }
   
   def sendLine(c:String, x1:Double, y1:Double, x2:Double, y2:Double) = Action { implicit request =>

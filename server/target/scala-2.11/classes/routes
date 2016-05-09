@@ -5,9 +5,11 @@
 # Home page
 GET     /                           controllers.Application.index
 
-GET 	/ajax						controllers.Application.ajax
+GET 	/addPlayer					controllers.Application.addPlayer
 
-GET 	/poll						controllers.Application.poll
+GET		/getPlayers/:playerID		controllers.Application.getPlayers(playerID:Int)
+
+GET		/movePlayer/:playerID/:dir	controllers.Application.movePlayer(playerID:Int, dir:Char)
 
 GET 	/clear						controllers.Application.clear
 

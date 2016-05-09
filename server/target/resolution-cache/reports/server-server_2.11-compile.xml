@@ -7,7 +7,7 @@
 		revision="0.1-SNAPSHOT"
 		conf="compile"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20160508171234"/>
+		date="20160508200143"/>
 	<dependencies>
 		<module organisation="org.webjars" name="jquery">
 			<revision name="1.11.1" status="release" pubdate="20140503131849" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://webjars.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="72">
@@ -1079,7 +1079,7 @@
 			</revision>
 		</module>
 		<module organisation="shared" name="shared_2.11">
-			<revision name="0.1-SNAPSHOT" status="integration" pubdate="20160508171233" resolver="inter-project" artresolver="inter-project" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="1">
+			<revision name="0.1-SNAPSHOT" status="integration" pubdate="20160508200142" resolver="inter-project" artresolver="inter-project" downloaded="false" searched="false" default="false" conf="compile, default(compile)" position="1">
 				<metadata-artifact status="failed" details="" size="0" time="0" searched="false"/>
 				<caller organisation="server" name="server_2.11" conf="compile" rev="0.1-SNAPSHOT" rev-constraint-default="0.1-SNAPSHOT" rev-constraint-dynamic="0.1-SNAPSHOT" callerrev="0.1-SNAPSHOT"/>
 				<artifacts>
