@@ -28,11 +28,23 @@ class Application @Inject()(environment: Environment, dbConfigProvider: Database
     Ok(models.Player.getPlayers(playerID))
   }
   
-  def movePlayer(playerID:Int, dir:Char) = Action { implicit request =>
-    models.Player.addKey(dir)
+  def movePlayer(playerID:Int, dir:String) = Action { implicit request =>
     models.Player.movePlayer(playerID, dir)
-    models.Player.removeKey(dir)
     Ok("GOOD")
+  }
+  
+  def addBullet(playerID:Int, x:Double, y:Double) = Action { implicit request =>
+    models.Player.addBullet(playerID, x, y)
+    Ok("GOOD")  
+  }
+  
+  def getBullets = Action { implicit request => 
+      Ok(models.Player.getBullets)
+  }
+  
+  def startServer = Action { implicit request =>
+    models.Player.startup
+    Ok("DONE")
   }
   
   def sendLine(c:String, x1:Double, y1:Double, x2:Double, y2:Double) = Action { implicit request =>

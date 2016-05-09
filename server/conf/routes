@@ -9,7 +9,13 @@ GET 	/addPlayer					controllers.Application.addPlayer
 
 GET		/getPlayers/:playerID		controllers.Application.getPlayers(playerID:Int)
 
-GET		/movePlayer/:playerID/:dir	controllers.Application.movePlayer(playerID:Int, dir:Char)
+GET		/movePlayer/:playerID/:dir	controllers.Application.movePlayer(playerID:Int, dir:String)
+
+GET		/addBullet/:playerID/:x/:y	controllers.Application.addBullet(playerID:Int, x:Double, y:Double)
+
+GET		/getBullets					controllers.Application.getBullets
+
+GET		/startServer				controllers.Application.startServer
 
 GET 	/clear						controllers.Application.clear
 
