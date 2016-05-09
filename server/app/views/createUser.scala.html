@@ -1,0 +1,15 @@
+@(createForm: Form[Login])(implicit environment: play.api.Environment)
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+
+@main("Final Project") {
+  @helper.form(action = routes.Application.createUser) {
+    @helper.inputText(createForm("user"))
+    @helper.inputPassword(createForm("pass"))
+    <div>
+      <button type='submit'>Create User</button>
+    </div>
+  }
+  <canvas id="canvas" width="800" height="800"></canvas>
+}
