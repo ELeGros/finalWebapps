@@ -18,10 +18,12 @@ import js.Dynamic.{ global => jslog }
 
 @JSExport
 object ScalaJSExample extends js.JSApp {
-  //case class Point(x: Double, y: Double)
+  case class Coordinate(x: Double, y: Double)
   val canvas = js.Dynamic.global.document.getElementById("canvas").asInstanceOf[html.Canvas]
   val ctx = canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
-
+  val playerSize = 3
+  val bulletSize = 1
+  
   @JSExport
   def main(): Unit = {
     import dom.ext._
@@ -42,7 +44,19 @@ object ScalaJSExample extends js.JSApp {
     }
   //  dom.setInterval(() => { poll() }, 35)
   }
-
+  
+  def drawPlayer(color:String, position:Coordinate):Unit = {
+    drawCircle(color, playerSize, position)
+  }
+  
+  def drawBullet(color:String, position:Coordinate):Unit = {
+    drawCircle(color, bulletSize, position)
+  }
+  
+  def drawCircle(color:String, size:Int, position:Coordinate):Unit = {
+    ctx.fillStyle = color
+    ctx.fillCircle(position.x, position.y, size*10.0)
+  }
   
 
 }
