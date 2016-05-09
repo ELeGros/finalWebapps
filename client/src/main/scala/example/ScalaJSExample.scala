@@ -26,70 +26,103 @@ object ScalaJSExample extends js.JSApp {
   val ctx = canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
   val playerSize = 3
   val bulletSize = 1
+  var wDown = false
+  var aDown = false
+  var sDown = false
+  var dDown = false
   var playerID = -1
-  
+
   @JSExport
   def main(): Unit = {
-    
-    
-    Ajax.get("addPlayer").onSuccess({case x => playerID = x.responseText.toInt})
-    
-    dom.onkeypress = { (e: dom.KeyboardEvent) =>
+
+    Ajax.get("addPlayer").onSuccess({ case x => playerID = x.responseText.toInt })
+    Ajax.get("startServer")
+
+    dom.onkeydown = { (e: dom.KeyboardEvent) =>
       {
         if (e.key == "w") {
-          Ajax.get("movePlayer/" + playerID + "/w")
+          wDown = true
+        } else if (e.key == "a") {
+          aDown = true
+        } else if (e.key == "s") {
+          sDown = true
+        } else if (e.key == "d") {
+          dDown = true
         }
-        if (e.key == "a") {
-          Ajax.get("movePlayer/" + playerID + "/a")
-        }
-        if (e.key == "s") {
-          Ajax.get("movePlayer/" + playerID + "/s")
-        }
-        if (e.key == "d") {
-          Ajax.get("movePlayer/" + playerID + "/d")
+      }
+    }
+
+    dom.onkeyup = { (e: dom.KeyboardEvent) =>
+      {
+        if (e.key == "w") {
+          wDown = false
+        } else if (e.key == "a") {
+          aDown = false
+        } else if (e.key == "s") {
+          sDown = false
+        } else if (e.key == "d") {
+          dDown = false
         }
       }
     }
 
     canvas.onmousedown = {
       (e: dom.MouseEvent) =>
-        
+        val rect = canvas.getBoundingClientRect()
+        Ajax.get("addBullet/" + playerID + '/' + (e.clientX - rect.left) + '/' +  (e.clientY - rect.top) )
     }
+    
     dom.setInterval(() => { render() }, 35)
   }
-  
-  def drawPlayer(color:String, position:Coordinate):Unit = {
+
+  def drawPlayer(color: String, position: Coordinate): Unit = {
     drawCircle(color, playerSize, position)
   }
-  
-  def drawBullet(color:String, position:Coordinate):Unit = {
+
+  def drawBullet(color: String, position: Coordinate): Unit = {
     drawCircle(color, bulletSize, position)
   }
-  
-  def drawCircle(color:String, size:Int, position:Coordinate):Unit = {
+
+  def drawCircle(color: String, size: Int, position: Coordinate): Unit = {
     ctx.fillStyle = color
-    ctx.fillCircle(position.x, position.y, size*10.0)
+    ctx.fillCircle(position.x, position.y, size * 10.0)
   }
-  
-  def render():Unit = {
-    Ajax.get("getPlayers/" + playerID).onSuccess({ case y => parseAndDraw(y.responseText)})
+
+  def render(): Unit = {
+    sendMovement()
+    Ajax.get("getPlayers/" + playerID).onSuccess({ case y => Ajax.get("getBullets").onSuccess({ case z => parseAndDraw(y.responseText, z.responseText) }) })
   }
-  
-  def parseAndDraw(in:String):Unit = {
+
+  def sendMovement(): Unit = {
+    var keys = ""
+    if (wDown) keys = keys + 'w'
+    if (aDown) keys = keys + 'a'
+    if (sDown) keys = keys + 's'
+    if (dDown) keys = keys + 'd'
+    if (keys.length > 0) Ajax.get("movePlayer/" + playerID + "/" + keys)
+  }
+
+  def parseAndDraw(players: String, bullets: String): Unit = {
     ctx.fillStyle = "white"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
-    val players = in.split('|')
-    for(s <- players) {
-      if(s.charAt(0) == '$') {
+    val ps = players.split('|')
+    for (s <- ps) {
+      if (s.charAt(0) == '$') {
         val thisPlayer = s.drop(1).split(' ')
         drawPlayer("blue", Coordinate(thisPlayer(0).toDouble, thisPlayer(1).toDouble))
-      }
-      else {
+      } else {
         val otherPlayer = s.split(' ')
         drawPlayer("red", Coordinate(otherPlayer(0).toDouble, otherPlayer(1).toDouble))
       }
     }
-    
+    if (bullets.length > 0) {
+      val bs = bullets.split('|')
+      for (s <- bs) {
+        val bullet = s.split(' ')
+        drawBullet("black", Coordinate(bullet(0).toDouble, bullet(1).toDouble))
+      }
+    }
+
   }
 
 }
