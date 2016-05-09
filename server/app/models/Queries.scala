@@ -11,20 +11,23 @@ object Queries {
   def main(args:Array[String]) {
   }
   
-  def tasks(username: String, db: Database): Future[Seq[Task]] = {
+  def lobbys(ingame: String, db: Database): Future[Seq[Lobby]] = {
     db.run {
       (for {
-        t <- Bindings.Tasks
-        if t.username === username
-      } yield t).result.map(_.distinct)
+        l <- Bindings.Lobbys
+        if l.ingame === ingame
+      } yield l).result.map(_.distinct)
     }
+    //db.run(Bindings.Lobbys.filter(u => u.ingame === ingame).result)
   }
   
-  def addTask(t:Task, db: Database):Unit = {
-      db.run(Bindings.Tasks+=t)
+  def validLogin(user: String, db: Database): Future[Int] = {
+    val matches = db.run(Bindings.Users.filter(u => u.user === user).result)
+    matches.map(us => if(us.isEmpty) -1 else 2)
   }
   
-  def removeTask(t:Task, db: Database):Unit = {
-//      db.run(Bindings.Tasks.filter(_.username === t.username && _.taskdesc === t.taskdesc).delete)
-  }
+  def addUser(user: String, pass: String, db: Database) {
+    db.run(Bindings.Users += User(user, pass))
+  } 
+  
 }

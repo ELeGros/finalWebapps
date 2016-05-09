@@ -9,7 +9,17 @@ GET 	/addPlayer					controllers.Application.addPlayer
 
 GET		/getPlayers/:playerID		controllers.Application.getPlayers(playerID:Int)
 
-GET		/movePlayer/:playerID/:dir	controllers.Application.movePlayer(playerID:Int, dir:Char)
+GET		/movePlayer/:playerID/:dir	controllers.Application.movePlayer(playerID:Int, dir:String)
+
+GET		/addBullet/:playerID/:x/:y	controllers.Application.addBullet(playerID:Int, x:Double, y:Double)
+
+GET		/getBullets					controllers.Application.getBullets
+
+GET		/getWalls					controllers.Application.getWalls
+
+GET		/inGamePoll/:playerID		controllers.Application.inGamePoll(playerID:Int)
+
+GET		/startServer				controllers.Application.startServer
 
 GET 	/clear						controllers.Application.clear
 
@@ -17,3 +27,9 @@ GET		/send/:c/:x1/:y1/:x2/:y2    	controllers.Application.sendLine(c:String, x1:
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+
+POST	/lobby						controllers.Application.lobby
+GET		/ingame						controllers.Application.ingame
+GET		/login						controllers.Application.login
+GET		/createUser					controllers.Application.createUser

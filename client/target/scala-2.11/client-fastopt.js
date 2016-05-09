@@ -1338,6 +1338,20 @@ function $s_sci_StringLike$class__split__sci_StringLike__C__AT($$this, separator
     return array
   }
 }
+function $s_sci_StringLike$class__parseBoolean__p0__sci_StringLike__T__Z($$this, s) {
+  if ((s !== null)) {
+    var x1 = $as_T(s.toLowerCase());
+    if ((x1 === "true")) {
+      return true
+    } else if ((x1 === "false")) {
+      return false
+    } else {
+      throw new $c_jl_IllegalArgumentException().init___T((("For input string: \"" + s) + "\""))
+    }
+  } else {
+    throw new $c_jl_IllegalArgumentException().init___T("For input string: \"null\"")
+  }
+}
 function $s_sci_VectorPointer$class__getElem__sci_VectorPointer__I__I__O($$this, index, xor) {
   if ((xor < 32)) {
     return $$this.display0__AO().u[(31 & index)]
@@ -3058,12 +3072,12 @@ function $h_sjsr_RuntimeString$() {
   /*<skip>*/
 }
 $h_sjsr_RuntimeString$.prototype = $c_sjsr_RuntimeString$.prototype;
-$c_sjsr_RuntimeString$.prototype.init___ = (function() {
-  return this
-});
 $c_sjsr_RuntimeString$.prototype.indexOf__T__I__I__I = (function(thiz, ch, fromIndex) {
   var str = this.fromCodePoint__p1__I__T(ch);
   return $uI(thiz.indexOf(str, fromIndex))
+});
+$c_sjsr_RuntimeString$.prototype.init___ = (function() {
+  return this
 });
 $c_sjsr_RuntimeString$.prototype.valueOf__O__T = (function(value) {
   return ((value === null) ? "null" : $objectToString(value))
@@ -3075,6 +3089,19 @@ $c_sjsr_RuntimeString$.prototype.lastIndexOf__T__I__I = (function(thiz, ch) {
 $c_sjsr_RuntimeString$.prototype.indexOf__T__I__I = (function(thiz, ch) {
   var str = this.fromCodePoint__p1__I__T(ch);
   return $uI(thiz.indexOf(str))
+});
+$c_sjsr_RuntimeString$.prototype.hashCode__T__I = (function(thiz) {
+  var res = 0;
+  var mul = 1;
+  var i = (((-1) + $uI(thiz.length)) | 0);
+  while ((i >= 0)) {
+    var jsx$1 = res;
+    var index = i;
+    res = ((jsx$1 + $imul((65535 & $uI(thiz.charCodeAt(index))), mul)) | 0);
+    mul = $imul(31, mul);
+    i = (((-1) + i) | 0)
+  };
+  return res
 });
 $c_sjsr_RuntimeString$.prototype.fromCodePoint__p1__I__T = (function(codePoint) {
   if ((((-65536) & codePoint) === 0)) {
@@ -3091,19 +3118,6 @@ $c_sjsr_RuntimeString$.prototype.fromCodePoint__p1__I__T = (function(codePoint) 
     var jsx$3 = jsx$4.fromCharCode.apply(jsx$4, array$1);
     return $as_T(jsx$3)
   }
-});
-$c_sjsr_RuntimeString$.prototype.hashCode__T__I = (function(thiz) {
-  var res = 0;
-  var mul = 1;
-  var i = (((-1) + $uI(thiz.length)) | 0);
-  while ((i >= 0)) {
-    var jsx$1 = res;
-    var index = i;
-    res = ((jsx$1 + $imul((65535 & $uI(thiz.charCodeAt(index))), mul)) | 0);
-    mul = $imul(31, mul);
-    i = (((-1) + i) | 0)
-  };
-  return res
 });
 var $d_sjsr_RuntimeString$ = new $TypeData().initClass({
   sjsr_RuntimeString$: 0
@@ -4096,7 +4110,12 @@ function $c_Lexample_ScalaJSExample$() {
   this.ctx$1 = null;
   this.playerSize$1 = 0;
   this.bulletSize$1 = 0;
-  this.playerID$1 = 0
+  this.wDown$1 = false;
+  this.aDown$1 = false;
+  this.sDown$1 = false;
+  this.dDown$1 = false;
+  this.playerID$1 = 0;
+  this.inGame$1 = false
 }
 $c_Lexample_ScalaJSExample$.prototype = new $h_O();
 $c_Lexample_ScalaJSExample$.prototype.constructor = $c_Lexample_ScalaJSExample$;
@@ -4111,44 +4130,13 @@ $c_Lexample_ScalaJSExample$.prototype.init___ = (function() {
   this.ctx$1 = this.canvas$1.getContext("2d");
   this.playerSize$1 = 3;
   this.bulletSize$1 = 1;
+  this.wDown$1 = false;
+  this.aDown$1 = false;
+  this.sDown$1 = false;
+  this.dDown$1 = false;
   this.playerID$1 = (-1);
+  this.inGame$1 = false;
   return this
-});
-$c_Lexample_ScalaJSExample$.prototype.parseAndDraw__T__V = (function($in) {
-  this.ctx$1.fillStyle = "white";
-  this.ctx$1.fillRect(0.0, 0.0, $uI(this.canvas$1.width), $uI(this.canvas$1.height));
-  var this$3 = new $c_sci_StringOps().init___T($in);
-  var players = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$3, 124);
-  var i = 0;
-  var len = players.u.length;
-  while ((i < len)) {
-    var index = i;
-    var arg1 = players.u[index];
-    var s = $as_T(arg1);
-    if (((65535 & $uI(s.charCodeAt(0))) === 36)) {
-      var this$9 = new $c_sci_StringOps().init___T(s);
-      var $$this = this$9.repr$1;
-      var until = $uI($$this.length);
-      var this$13 = new $c_sci_StringOps().init___T($m_sci_StringOps$().slice$extension__T__I__I__T(this$9.repr$1, 1, until));
-      var thisPlayer = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$13, 32);
-      var this$20 = $m_Lexample_ScalaJSExample$();
-      var this$15 = new $c_sci_StringOps().init___T(thisPlayer.u[0]);
-      var jsx$1 = $m_jl_Double$().parseDouble__T__D(this$15.repr$1);
-      var this$18 = new $c_sci_StringOps().init___T(thisPlayer.u[1]);
-      var position = new $c_Lexample_ScalaJSExample$Coordinate().init___D__D(jsx$1, $m_jl_Double$().parseDouble__T__D(this$18.repr$1));
-      this$20.drawCircle__T__I__Lexample_ScalaJSExample$Coordinate__V("blue", this$20.playerSize$1, position)
-    } else {
-      var this$22 = new $c_sci_StringOps().init___T(s);
-      var otherPlayer = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$22, 32);
-      var this$29 = $m_Lexample_ScalaJSExample$();
-      var this$24 = new $c_sci_StringOps().init___T(otherPlayer.u[0]);
-      var jsx$2 = $m_jl_Double$().parseDouble__T__D(this$24.repr$1);
-      var this$27 = new $c_sci_StringOps().init___T(otherPlayer.u[1]);
-      var position$1 = new $c_Lexample_ScalaJSExample$Coordinate().init___D__D(jsx$2, $m_jl_Double$().parseDouble__T__D(this$27.repr$1));
-      this$29.drawCircle__T__I__Lexample_ScalaJSExample$Coordinate__V("red", this$29.playerSize$1, position$1)
-    };
-    i = ((1 + i) | 0)
-  }
 });
 $c_Lexample_ScalaJSExample$.prototype.main__V = (function() {
   var this$3 = $m_Lorg_scalajs_dom_ext_Ajax$();
@@ -4157,57 +4145,192 @@ $c_Lexample_ScalaJSExample$.prototype.main__V = (function() {
   var pf = new $c_Lexample_ScalaJSExample$$anonfun$main$2().init___();
   var executor = $m_s_concurrent_ExecutionContext$Implicits$().global__s_concurrent_ExecutionContextExecutor();
   $s_s_concurrent_Future$class__onSuccess__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$4, pf, executor);
-  $g.onkeypress = (function(e$2) {
-    if (($as_T(e$2.key) === "w")) {
-      var this$7 = $m_Lorg_scalajs_dom_ext_Ajax$();
-      var url = (("movePlayer/" + $m_Lexample_ScalaJSExample$().playerID$1) + "/w");
-      var headers$1 = $m_sci_Map$EmptyMap$();
-      this$7.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url, "", 0, headers$1, false, "")
-    };
-    if (($as_T(e$2.key) === "a")) {
-      var this$10 = $m_Lorg_scalajs_dom_ext_Ajax$();
-      var url$1 = (("movePlayer/" + $m_Lexample_ScalaJSExample$().playerID$1) + "/a");
+  var this$7 = $m_Lorg_scalajs_dom_ext_Ajax$();
+  var headers$1 = $m_sci_Map$EmptyMap$();
+  this$7.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", "startServer", "", 0, headers$1, false, "");
+  $g.onkeydown = (function(e$2) {
+    if ($m_Lexample_ScalaJSExample$().inGame$1) {
+      if (($as_T(e$2.key) === "w")) {
+        $m_Lexample_ScalaJSExample$().wDown$1 = true
+      } else if (($as_T(e$2.key) === "a")) {
+        $m_Lexample_ScalaJSExample$().aDown$1 = true
+      } else if (($as_T(e$2.key) === "s")) {
+        $m_Lexample_ScalaJSExample$().sDown$1 = true
+      } else if (($as_T(e$2.key) === "d")) {
+        $m_Lexample_ScalaJSExample$().dDown$1 = true
+      }
+    }
+  });
+  $g.onkeyup = (function(e$2$1) {
+    if ($m_Lexample_ScalaJSExample$().inGame$1) {
+      if (($as_T(e$2$1.key) === "w")) {
+        $m_Lexample_ScalaJSExample$().wDown$1 = false
+      } else if (($as_T(e$2$1.key) === "a")) {
+        $m_Lexample_ScalaJSExample$().aDown$1 = false
+      } else if (($as_T(e$2$1.key) === "s")) {
+        $m_Lexample_ScalaJSExample$().sDown$1 = false
+      } else if (($as_T(e$2$1.key) === "d")) {
+        $m_Lexample_ScalaJSExample$().dDown$1 = false
+      }
+    }
+  });
+  this.canvas$1.onmousedown = (function(e$2$2) {
+    if ($m_Lexample_ScalaJSExample$().inGame$1) {
+      var rect = $m_Lexample_ScalaJSExample$().canvas$1.getBoundingClientRect();
+      var this$14 = $m_Lorg_scalajs_dom_ext_Ajax$();
+      var url = ((((("addBullet/" + $m_Lexample_ScalaJSExample$().playerID$1) + new $c_jl_Character().init___C(47)) + ($uD(e$2$2.clientX) - $uD(rect.left))) + new $c_jl_Character().init___C(47)) + ($uD(e$2$2.clientY) - $uD(rect.top)));
       var headers$2 = $m_sci_Map$EmptyMap$();
-      this$10.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url$1, "", 0, headers$2, false, "")
-    };
-    if (($as_T(e$2.key) === "s")) {
-      var this$13 = $m_Lorg_scalajs_dom_ext_Ajax$();
-      var url$2 = (("movePlayer/" + $m_Lexample_ScalaJSExample$().playerID$1) + "/s");
-      var headers$3 = $m_sci_Map$EmptyMap$();
-      this$13.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url$2, "", 0, headers$3, false, "")
-    };
-    if (($as_T(e$2.key) === "d")) {
-      var this$16 = $m_Lorg_scalajs_dom_ext_Ajax$();
-      var url$3 = (("movePlayer/" + $m_Lexample_ScalaJSExample$().playerID$1) + "/d");
-      var headers$4 = $m_sci_Map$EmptyMap$();
-      return this$16.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url$3, "", 0, headers$4, false, "")
+      return this$14.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url, "", 0, headers$2, false, "")
     } else {
       return (void 0)
     }
-  });
-  this.canvas$1.onmousedown = (function(e$2$1) {
-    return (void 0)
   });
   $g.setInterval((function() {
     $m_Lexample_ScalaJSExample$().render__V()
   }), 35.0)
 });
 $c_Lexample_ScalaJSExample$.prototype.render__V = (function() {
+  if (this.inGame$1) {
+    this.sendMovement__V()
+  } else {
+    this.wDown$1 = false;
+    this.aDown$1 = false;
+    this.dDown$1 = false;
+    this.sDown$1 = false
+  };
   var this$3 = $m_Lorg_scalajs_dom_ext_Ajax$();
-  var url = ("getPlayers/" + this.playerID$1);
   var headers = $m_sci_Map$EmptyMap$();
-  var this$4 = this$3.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url, "", 0, headers, false, "");
+  var this$4 = this$3.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", "getWalls", "", 0, headers, false, "");
   var pf = new $c_Lexample_ScalaJSExample$$anonfun$render$1().init___();
   var executor = $m_s_concurrent_ExecutionContext$Implicits$().global__s_concurrent_ExecutionContextExecutor();
-  $s_s_concurrent_Future$class__onSuccess__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$4, pf, executor)
+  $s_s_concurrent_Future$class__onSuccess__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$4, pf, executor);
+  var this$7 = $m_Lorg_scalajs_dom_ext_Ajax$();
+  var url = ("inGamePoll/" + this.playerID$1);
+  var headers$1 = $m_sci_Map$EmptyMap$();
+  var this$8 = this$7.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url, "", 0, headers$1, false, "");
+  var pf$1 = new $c_Lexample_ScalaJSExample$$anonfun$render$2().init___();
+  var executor$1 = $m_s_concurrent_ExecutionContext$Implicits$().global__s_concurrent_ExecutionContextExecutor();
+  $s_s_concurrent_Future$class__onSuccess__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$8, pf$1, executor$1)
 });
 $c_Lexample_ScalaJSExample$.prototype.drawCircle__T__I__Lexample_ScalaJSExample$Coordinate__V = (function(color, size, position) {
   this.ctx$1.fillStyle = color;
   var ctx = this.ctx$1;
   new $c_Lorg_scalajs_dom_ext_package$pimpedContext().init___Lorg_scalajs_dom_raw_CanvasRenderingContext2D(ctx).fillCircle__D__D__D__V(position.x$1, position.y$1, (10.0 * size))
 });
+$c_Lexample_ScalaJSExample$.prototype.drawWall__T__D__D__D__D__V = (function(color, x1, y1, x2, y2) {
+  this.ctx$1.lineWidth = 20.0;
+  this.ctx$1.strokeStyle = color;
+  this.ctx$1.beginPath();
+  this.ctx$1.moveTo(x1, y1);
+  this.ctx$1.lineTo(x2, y2);
+  this.ctx$1.stroke();
+  this.ctx$1.closePath()
+});
+$c_Lexample_ScalaJSExample$.prototype.sendMovement__V = (function() {
+  var keys = "";
+  if (this.wDown$1) {
+    keys = (("" + keys) + new $c_jl_Character().init___C(119))
+  };
+  if (this.aDown$1) {
+    keys = (("" + keys) + new $c_jl_Character().init___C(97))
+  };
+  if (this.sDown$1) {
+    keys = (("" + keys) + new $c_jl_Character().init___C(115))
+  };
+  if (this.dDown$1) {
+    keys = (("" + keys) + new $c_jl_Character().init___C(100))
+  };
+  var thiz = keys;
+  if (($uI(thiz.length) > 0)) {
+    var this$12 = $m_Lorg_scalajs_dom_ext_Ajax$();
+    var url = ((("movePlayer/" + this.playerID$1) + "/") + keys);
+    var headers = $m_sci_Map$EmptyMap$();
+    this$12.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url, "", 0, headers, false, "")
+  }
+});
 $c_Lexample_ScalaJSExample$.prototype.$$js$exported$meth$main__O = (function() {
   this.main__V()
+});
+$c_Lexample_ScalaJSExample$.prototype.drawWalls__T__V = (function(walls) {
+  this.ctx$1.fillStyle = "white";
+  this.ctx$1.fillRect(0.0, 0.0, $uI(this.canvas$1.width), $uI(this.canvas$1.height));
+  if (($uI(walls.length) > 0)) {
+    var this$4 = new $c_sci_StringOps().init___T(walls);
+    var ws = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$4, 124);
+    var i = 0;
+    var len = ws.u.length;
+    while ((i < len)) {
+      var index = i;
+      var arg1 = ws.u[index];
+      var s = $as_T(arg1);
+      var this$9 = new $c_sci_StringOps().init___T(s);
+      var wall = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$9, 32);
+      var jsx$4 = $m_Lexample_ScalaJSExample$();
+      var this$11 = new $c_sci_StringOps().init___T(wall.u[0]);
+      var jsx$3 = $m_jl_Double$().parseDouble__T__D(this$11.repr$1);
+      var this$14 = new $c_sci_StringOps().init___T(wall.u[1]);
+      var jsx$2 = $m_jl_Double$().parseDouble__T__D(this$14.repr$1);
+      var this$17 = new $c_sci_StringOps().init___T(wall.u[2]);
+      var jsx$1 = $m_jl_Double$().parseDouble__T__D(this$17.repr$1);
+      var this$20 = new $c_sci_StringOps().init___T(wall.u[3]);
+      jsx$4.drawWall__T__D__D__D__D__V("black", jsx$3, jsx$2, jsx$1, $m_jl_Double$().parseDouble__T__D(this$20.repr$1));
+      i = ((1 + i) | 0)
+    }
+  }
+});
+$c_Lexample_ScalaJSExample$.prototype.parseAndDraw__T__T__V = (function(players, bullets) {
+  var this$2 = new $c_sci_StringOps().init___T(players);
+  var ps = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$2, 124);
+  var i = 0;
+  var len = ps.u.length;
+  while ((i < len)) {
+    var index = i;
+    var arg1 = ps.u[index];
+    var s = $as_T(arg1);
+    if (((65535 & $uI(s.charCodeAt(0))) === 36)) {
+      var this$8 = new $c_sci_StringOps().init___T(s);
+      var $$this = this$8.repr$1;
+      var until = $uI($$this.length);
+      var this$12 = new $c_sci_StringOps().init___T($m_sci_StringOps$().slice$extension__T__I__I__T(this$8.repr$1, 1, until));
+      var thisPlayer = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$12, 32);
+      var this$19 = $m_Lexample_ScalaJSExample$();
+      var this$14 = new $c_sci_StringOps().init___T(thisPlayer.u[0]);
+      var jsx$1 = $m_jl_Double$().parseDouble__T__D(this$14.repr$1);
+      var this$17 = new $c_sci_StringOps().init___T(thisPlayer.u[1]);
+      var position = new $c_Lexample_ScalaJSExample$Coordinate().init___D__D(jsx$1, $m_jl_Double$().parseDouble__T__D(this$17.repr$1));
+      this$19.drawCircle__T__I__Lexample_ScalaJSExample$Coordinate__V("blue", this$19.playerSize$1, position)
+    } else {
+      var this$21 = new $c_sci_StringOps().init___T(s);
+      var otherPlayer = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$21, 32);
+      var this$28 = $m_Lexample_ScalaJSExample$();
+      var this$23 = new $c_sci_StringOps().init___T(otherPlayer.u[0]);
+      var jsx$2 = $m_jl_Double$().parseDouble__T__D(this$23.repr$1);
+      var this$26 = new $c_sci_StringOps().init___T(otherPlayer.u[1]);
+      var position$1 = new $c_Lexample_ScalaJSExample$Coordinate().init___D__D(jsx$2, $m_jl_Double$().parseDouble__T__D(this$26.repr$1));
+      this$28.drawCircle__T__I__Lexample_ScalaJSExample$Coordinate__V("red", this$28.playerSize$1, position$1)
+    };
+    i = ((1 + i) | 0)
+  };
+  if (($uI(bullets.length) > 0)) {
+    var this$31 = new $c_sci_StringOps().init___T(bullets);
+    var bs = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$31, 124);
+    var i$1 = 0;
+    var len$1 = bs.u.length;
+    while ((i$1 < len$1)) {
+      var index$1 = i$1;
+      var arg1$1 = bs.u[index$1];
+      var s$1 = $as_T(arg1$1);
+      var this$36 = new $c_sci_StringOps().init___T(s$1);
+      var bullet = $s_sci_StringLike$class__split__sci_StringLike__C__AT(this$36, 32);
+      var this$43 = $m_Lexample_ScalaJSExample$();
+      var this$38 = new $c_sci_StringOps().init___T(bullet.u[0]);
+      var jsx$3 = $m_jl_Double$().parseDouble__T__D(this$38.repr$1);
+      var this$41 = new $c_sci_StringOps().init___T(bullet.u[1]);
+      var position$2 = new $c_Lexample_ScalaJSExample$Coordinate().init___D__D(jsx$3, $m_jl_Double$().parseDouble__T__D(this$41.repr$1));
+      this$43.drawCircle__T__I__Lexample_ScalaJSExample$Coordinate__V("black", this$43.bulletSize$1, position$2);
+      i$1 = ((1 + i$1) | 0)
+    }
+  }
 });
 $c_Lexample_ScalaJSExample$.prototype.main = (function() {
   return this.$$js$exported$meth$main__O()
@@ -7625,7 +7748,14 @@ $c_Lexample_ScalaJSExample$$anonfun$main$2.prototype.applyOrElse__Lorg_scalajs_d
   var this$2 = new $c_sci_StringOps().init___T($as_T(x1.responseText));
   var this$4 = $m_jl_Integer$();
   var s = this$2.repr$1;
-  jsx$1.playerID$1 = this$4.parseInt__T__I__I(s, 10)
+  jsx$1.playerID$1 = this$4.parseInt__T__I__I(s, 10);
+  var this$7 = $m_Lorg_scalajs_dom_ext_Ajax$();
+  var url = ("inGamePoll/" + $m_Lexample_ScalaJSExample$().playerID$1);
+  var headers = $m_sci_Map$EmptyMap$();
+  var this$8 = this$7.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url, "", 0, headers, false, "");
+  var pf = new $c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1().init___Lexample_ScalaJSExample$$anonfun$main$2(this);
+  var executor = $m_s_concurrent_ExecutionContext$Implicits$().global__s_concurrent_ExecutionContextExecutor();
+  $s_s_concurrent_Future$class__onSuccess__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$8, pf, executor)
 });
 $c_Lexample_ScalaJSExample$$anonfun$main$2.prototype.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z = (function(x1) {
   return true
@@ -7649,6 +7779,46 @@ var $d_Lexample_ScalaJSExample$$anonfun$main$2 = new $TypeData().initClass({
 });
 $c_Lexample_ScalaJSExample$$anonfun$main$2.prototype.$classData = $d_Lexample_ScalaJSExample$$anonfun$main$2;
 /** @constructor */
+function $c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1() {
+  $c_sr_AbstractPartialFunction.call(this)
+}
+$c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype = new $h_sr_AbstractPartialFunction();
+$c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype.constructor = $c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1;
+/** @constructor */
+function $h_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1() {
+  /*<skip>*/
+}
+$h_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype = $c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype;
+$c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O = (function(x2, $default) {
+  var jsx$1 = $m_Lexample_ScalaJSExample$();
+  var this$2 = new $c_sci_StringOps().init___T($as_T(x2.responseText));
+  jsx$1.inGame$1 = $s_sci_StringLike$class__parseBoolean__p0__sci_StringLike__T__Z(this$2, this$2.repr$1)
+});
+$c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z = (function(x2) {
+  return true
+});
+$c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype.isDefinedAt__O__Z = (function(x) {
+  return this.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z(x)
+});
+$c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype.applyOrElse__O__F1__O = (function(x, $default) {
+  return this.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O(x, $default)
+});
+$c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype.init___Lexample_ScalaJSExample$$anonfun$main$2 = (function($$outer) {
+  return this
+});
+var $d_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1 = new $TypeData().initClass({
+  Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1: 0
+}, false, "example.ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1", {
+  Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1: 1,
+  sr_AbstractPartialFunction: 1,
+  O: 1,
+  F1: 1,
+  s_PartialFunction: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1.prototype.$classData = $d_Lexample_ScalaJSExample$$anonfun$main$2$$anonfun$applyOrElse$1;
+/** @constructor */
 function $c_Lexample_ScalaJSExample$$anonfun$render$1() {
   $c_sr_AbstractPartialFunction.call(this)
 }
@@ -7662,10 +7832,16 @@ $h_Lexample_ScalaJSExample$$anonfun$render$1.prototype = $c_Lexample_ScalaJSExam
 $c_Lexample_ScalaJSExample$$anonfun$render$1.prototype.init___ = (function() {
   return this
 });
-$c_Lexample_ScalaJSExample$$anonfun$render$1.prototype.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O = (function(x2, $default) {
-  $m_Lexample_ScalaJSExample$().parseAndDraw__T__V($as_T(x2.responseText))
+$c_Lexample_ScalaJSExample$$anonfun$render$1.prototype.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O = (function(x3, $default) {
+  var this$3 = $m_Lorg_scalajs_dom_ext_Ajax$();
+  var url = ("getPlayers/" + $m_Lexample_ScalaJSExample$().playerID$1);
+  var headers = $m_sci_Map$EmptyMap$();
+  var this$4 = this$3.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", url, "", 0, headers, false, "");
+  var pf = new $c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2().init___Lexample_ScalaJSExample$$anonfun$render$1__Lorg_scalajs_dom_raw_XMLHttpRequest(this, x3);
+  var executor = $m_s_concurrent_ExecutionContext$Implicits$().global__s_concurrent_ExecutionContextExecutor();
+  $s_s_concurrent_Future$class__onSuccess__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$4, pf, executor)
 });
-$c_Lexample_ScalaJSExample$$anonfun$render$1.prototype.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z = (function(x2) {
+$c_Lexample_ScalaJSExample$$anonfun$render$1.prototype.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z = (function(x3) {
   return true
 });
 $c_Lexample_ScalaJSExample$$anonfun$render$1.prototype.isDefinedAt__O__Z = (function(x) {
@@ -7686,6 +7862,138 @@ var $d_Lexample_ScalaJSExample$$anonfun$render$1 = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_Lexample_ScalaJSExample$$anonfun$render$1.prototype.$classData = $d_Lexample_ScalaJSExample$$anonfun$render$1;
+/** @constructor */
+function $c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2() {
+  $c_sr_AbstractPartialFunction.call(this);
+  this.x1$2$f = null
+}
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype = new $h_sr_AbstractPartialFunction();
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype.constructor = $c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2;
+/** @constructor */
+function $h_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2() {
+  /*<skip>*/
+}
+$h_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype = $c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype;
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O = (function(x4, $default) {
+  var this$3 = $m_Lorg_scalajs_dom_ext_Ajax$();
+  var headers = $m_sci_Map$EmptyMap$();
+  var this$4 = this$3.apply__T__T__T__I__sci_Map__Z__T__s_concurrent_Future("GET", "getBullets", "", 0, headers, false, "");
+  var pf = new $c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3().init___Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2__Lorg_scalajs_dom_raw_XMLHttpRequest(this, x4);
+  var executor = $m_s_concurrent_ExecutionContext$Implicits$().global__s_concurrent_ExecutionContextExecutor();
+  $s_s_concurrent_Future$class__onSuccess__s_concurrent_Future__s_PartialFunction__s_concurrent_ExecutionContext__V(this$4, pf, executor)
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype.init___Lexample_ScalaJSExample$$anonfun$render$1__Lorg_scalajs_dom_raw_XMLHttpRequest = (function($$outer, x1$2) {
+  this.x1$2$f = x1$2;
+  return this
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z = (function(x4) {
+  return true
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype.isDefinedAt__O__Z = (function(x) {
+  return this.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z(x)
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype.applyOrElse__O__F1__O = (function(x, $default) {
+  return this.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O(x, $default)
+});
+var $d_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2 = new $TypeData().initClass({
+  Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2: 0
+}, false, "example.ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2", {
+  Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2: 1,
+  sr_AbstractPartialFunction: 1,
+  O: 1,
+  F1: 1,
+  s_PartialFunction: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2.prototype.$classData = $d_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2;
+/** @constructor */
+function $c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3() {
+  $c_sr_AbstractPartialFunction.call(this);
+  this.$$outer$2 = null;
+  this.x1$1$2 = null
+}
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype = new $h_sr_AbstractPartialFunction();
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype.constructor = $c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3;
+/** @constructor */
+function $h_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3() {
+  /*<skip>*/
+}
+$h_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype = $c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype;
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O = (function(x5, $default) {
+  $m_Lexample_ScalaJSExample$().drawWalls__T__V($as_T(this.$$outer$2.x1$2$f.responseText));
+  $m_Lexample_ScalaJSExample$().parseAndDraw__T__T__V($as_T(this.x1$1$2.responseText), $as_T(x5.responseText))
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype.init___Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2__Lorg_scalajs_dom_raw_XMLHttpRequest = (function($$outer, x1$1) {
+  if (($$outer === null)) {
+    throw $m_sjsr_package$().unwrapJavaScriptException__jl_Throwable__O(null)
+  } else {
+    this.$$outer$2 = $$outer
+  };
+  this.x1$1$2 = x1$1;
+  return this
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z = (function(x5) {
+  return true
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype.isDefinedAt__O__Z = (function(x) {
+  return this.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z(x)
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype.applyOrElse__O__F1__O = (function(x, $default) {
+  return this.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O(x, $default)
+});
+var $d_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3 = new $TypeData().initClass({
+  Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3: 0
+}, false, "example.ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3", {
+  Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3: 1,
+  sr_AbstractPartialFunction: 1,
+  O: 1,
+  F1: 1,
+  s_PartialFunction: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3.prototype.$classData = $d_Lexample_ScalaJSExample$$anonfun$render$1$$anonfun$applyOrElse$2$$anonfun$applyOrElse$3;
+/** @constructor */
+function $c_Lexample_ScalaJSExample$$anonfun$render$2() {
+  $c_sr_AbstractPartialFunction.call(this)
+}
+$c_Lexample_ScalaJSExample$$anonfun$render$2.prototype = new $h_sr_AbstractPartialFunction();
+$c_Lexample_ScalaJSExample$$anonfun$render$2.prototype.constructor = $c_Lexample_ScalaJSExample$$anonfun$render$2;
+/** @constructor */
+function $h_Lexample_ScalaJSExample$$anonfun$render$2() {
+  /*<skip>*/
+}
+$h_Lexample_ScalaJSExample$$anonfun$render$2.prototype = $c_Lexample_ScalaJSExample$$anonfun$render$2.prototype;
+$c_Lexample_ScalaJSExample$$anonfun$render$2.prototype.init___ = (function() {
+  return this
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$2.prototype.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O = (function(x6, $default) {
+  var jsx$1 = $m_Lexample_ScalaJSExample$();
+  var this$2 = new $c_sci_StringOps().init___T($as_T(x6.responseText));
+  jsx$1.inGame$1 = $s_sci_StringLike$class__parseBoolean__p0__sci_StringLike__T__Z(this$2, this$2.repr$1)
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$2.prototype.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z = (function(x6) {
+  return true
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$2.prototype.isDefinedAt__O__Z = (function(x) {
+  return this.isDefinedAt__Lorg_scalajs_dom_raw_XMLHttpRequest__Z(x)
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$2.prototype.applyOrElse__O__F1__O = (function(x, $default) {
+  return this.applyOrElse__Lorg_scalajs_dom_raw_XMLHttpRequest__F1__O(x, $default)
+});
+var $d_Lexample_ScalaJSExample$$anonfun$render$2 = new $TypeData().initClass({
+  Lexample_ScalaJSExample$$anonfun$render$2: 0
+}, false, "example.ScalaJSExample$$anonfun$render$2", {
+  Lexample_ScalaJSExample$$anonfun$render$2: 1,
+  sr_AbstractPartialFunction: 1,
+  O: 1,
+  F1: 1,
+  s_PartialFunction: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lexample_ScalaJSExample$$anonfun$render$2.prototype.$classData = $d_Lexample_ScalaJSExample$$anonfun$render$2;
 /** @constructor */
 function $c_Ljava_io_PrintStream() {
   $c_Ljava_io_FilterOutputStream.call(this);

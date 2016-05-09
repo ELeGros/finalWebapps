@@ -1,4 +1,4 @@
-[0m[[0minfo[0m] [0mUpdating {file:/users/elegros/task10/}sharedJS...[0m
+[0m[[0minfo[0m] [0mUpdating {file:/users/elegros/projectFinal/}sharedJS...[0m
 [0m[[0mdebug[0m] [0m:: resolving dependencies :: shared#shared_sjs0.6_2.11;0.1-SNAPSHOT[0m
 [0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool, phantom-js-jetty][0m
 [0m[[0mdebug[0m] [0m	validate = true[0m
@@ -7,7 +7,7 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT [compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies shared#shared_sjs0.6_2.11;0.1-SNAPSHOT->org.scala-lang#scala-library;2.11.8 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.11.8 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@2cccc3c4[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@7fa3578e[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.11.8[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.11.8 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m	[2.11.8] org.scala-lang#scala-library;2.11.8[0m
@@ -46,7 +46,7 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies shared#shared_sjs0.6_2.11;0.1-SNAPSHOT->org.scala-js#scalajs-library_2.11;0.6.8 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies shared#shared_sjs0.6_2.11;0.1-SNAPSHOT->org.scala-lang#scala-compiler;2.11.8 [runtime->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-compiler;2.11.8 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@4a9e76eb[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@4708fa2b[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-compiler;2.11.8[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-compiler;2.11.8 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies shared#shared_sjs0.6_2.11;0.1-SNAPSHOT->org.scala-lang#scala-compiler;2.11.8 [runtime->runtime][0m
@@ -184,6 +184,7 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT [runtime-internal][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT [runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT [compile][0m
+[0m[[0mdebug[0m] [0mno default cache defined: set to /users/elegros/.ivy2/cache[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies shared#shared_sjs0.6_2.11;0.1-SNAPSHOT->org.scala-lang#scala-library;2.11.8 [compile->default(compile)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies shared#shared_sjs0.6_2.11;0.1-SNAPSHOT->org.scala-lang#scala-library;2.11.8 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies shared#shared_sjs0.6_2.11;0.1-SNAPSHOT->org.scala-lang#scala-library;2.11.8 [compile->compile][0m
@@ -512,20 +513,20 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-http;8.1.16.v20140903!jetty-http.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty.orbit#javax.servlet;3.0.0.v201112011016!javax.servlet.jar(orbit)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-continuation;8.1.16.v20140903!jetty-continuation.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 127ms :: artifacts dl 12ms[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT compile produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-compile.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT runtime produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-runtime.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT test produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-test.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT provided produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-provided.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT optional produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-optional.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT compile-internal produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-compile-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT runtime-internal produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-runtime-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT test-internal produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-test-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT plugin produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-plugin.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT sources produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-sources.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT docs produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-docs.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT pom produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-pom.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT scala-tool produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT phantom-js-jetty produced in /users/elegros/task10/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-phantom-js-jetty.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (127ms resolve - 12ms download)[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 231ms :: artifacts dl 11ms[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT compile produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT runtime produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT test produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT provided produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT optional produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT compile-internal produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT runtime-internal produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT test-internal produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT plugin produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT sources produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT docs produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT pom produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-pom.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT scala-tool produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-scala-tool.xml[0m
+[0m[[0mdebug[0m] [0m	report for shared#shared_sjs0.6_2.11;0.1-SNAPSHOT phantom-js-jetty produced in /users/elegros/projectFinal/shared/.js/target/resolution-cache/reports/shared-shared_sjs0.6_2.11-phantom-js-jetty.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (231ms resolve - 11ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

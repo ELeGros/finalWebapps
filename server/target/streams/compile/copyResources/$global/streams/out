@@ -1,3 +1,4 @@
 [0m[[0mdebug[0m] [0mCopy resource mappings: [0m
 [0m[[0mdebug[0m] [0m	(/users/elegros/projectFinal/server/conf/routes,/users/elegros/projectFinal/server/target/scala-2.11/classes/routes)[0m
 [0m[[0mdebug[0m] [0m	(/users/elegros/projectFinal/server/conf/application.conf,/users/elegros/projectFinal/server/target/scala-2.11/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/users/elegros/projectFinal/server/conf/routes~,/users/elegros/projectFinal/server/target/scala-2.11/classes/routes~)[0m

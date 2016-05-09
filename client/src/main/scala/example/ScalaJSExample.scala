@@ -31,45 +31,55 @@ object ScalaJSExample extends js.JSApp {
   var sDown = false
   var dDown = false
   var playerID = -1
+  var inGame = false
 
   @JSExport
   def main(): Unit = {
 
-    Ajax.get("addPlayer").onSuccess({ case x => playerID = x.responseText.toInt })
+    Ajax.get("addPlayer").onSuccess({ case x => 
+        playerID = x.responseText.toInt 
+        Ajax.get("inGamePoll/" + playerID).onSuccess({case x => inGame = x.responseText.toBoolean})
+      })
     Ajax.get("startServer")
 
     dom.onkeydown = { (e: dom.KeyboardEvent) =>
       {
-        if (e.key == "w") {
-          wDown = true
-        } else if (e.key == "a") {
-          aDown = true
-        } else if (e.key == "s") {
-          sDown = true
-        } else if (e.key == "d") {
-          dDown = true
-        }
+        if(inGame) {
+          if (e.key == "w") {
+            wDown = true
+          } else if (e.key == "a") {
+            aDown = true
+          } else if (e.key == "s") {
+            sDown = true
+          } else if (e.key == "d") {
+            dDown = true
+          }
+        } 
       }
     }
 
     dom.onkeyup = { (e: dom.KeyboardEvent) =>
       {
-        if (e.key == "w") {
-          wDown = false
-        } else if (e.key == "a") {
-          aDown = false
-        } else if (e.key == "s") {
-          sDown = false
-        } else if (e.key == "d") {
-          dDown = false
+        if(inGame) {
+          if (e.key == "w") {
+            wDown = false
+          } else if (e.key == "a") {
+            aDown = false
+          } else if (e.key == "s") {
+            sDown = false
+          } else if (e.key == "d") {
+            dDown = false
+          }
         }
       }
     }
 
     canvas.onmousedown = {
       (e: dom.MouseEvent) =>
-        val rect = canvas.getBoundingClientRect()
-        Ajax.get("addBullet/" + playerID + '/' + (e.clientX - rect.left) + '/' +  (e.clientY - rect.top) )
+        if(inGame){
+          val rect = canvas.getBoundingClientRect()
+          Ajax.get("addBullet/" + playerID + '/' + (e.clientX - rect.left) + '/' +  (e.clientY - rect.top) )
+        }
     }
     
     dom.setInterval(() => { render() }, 35)
@@ -87,10 +97,47 @@ object ScalaJSExample extends js.JSApp {
     ctx.fillStyle = color
     ctx.fillCircle(position.x, position.y, size * 10.0)
   }
+  
+  def drawWall(color:String, x1: Double, y1:Double, x2:Double, y2:Double): Unit = {
+    ctx.lineWidth = 20
+    ctx.strokeStyle = color
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.stroke()
+    ctx.closePath()
+  }
 
   def render(): Unit = {
-    sendMovement()
-    Ajax.get("getPlayers/" + playerID).onSuccess({ case y => Ajax.get("getBullets").onSuccess({ case z => parseAndDraw(y.responseText, z.responseText) }) })
+    if(inGame) sendMovement()
+    else {
+          wDown = false
+          aDown = false
+          dDown = false
+          sDown = false
+    }
+    Ajax.get("getWalls").onSuccess({case x => 
+      Ajax.get("getPlayers/" + playerID).onSuccess({ case y => 
+        Ajax.get("getBullets").onSuccess({ 
+          case z => drawWalls(x.responseText) 
+          parseAndDraw(y.responseText, z.responseText) 
+        }) 
+      })
+    })
+    Ajax.get("inGamePoll/"+playerID).onSuccess({ case x => inGame = x.responseText.toBoolean})
+    
+  }
+  
+  def drawWalls(walls:String):Unit = {
+    ctx.fillStyle = "white"
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    if (walls.length > 0) {
+      val ws = walls.split('|')
+      for (s <- ws) {
+        val wall = s.split(' ')
+        drawWall("black", wall(0).toDouble, wall(1).toDouble, wall(2).toDouble, wall(3).toDouble)
+      }
+    }
   }
 
   def sendMovement(): Unit = {
@@ -103,8 +150,7 @@ object ScalaJSExample extends js.JSApp {
   }
 
   def parseAndDraw(players: String, bullets: String): Unit = {
-    ctx.fillStyle = "white"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    
     val ps = players.split('|')
     for (s <- ps) {
       if (s.charAt(0) == '$') {

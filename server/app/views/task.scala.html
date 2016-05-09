@@ -1,4 +1,7 @@
-@(implicit environment: play.api.Environment)
+@(lobbylist: Seq[Lobby], gamelist: Seq[Lobby])(implicit environment: play.api.Environment)
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
 
 @main("Play with Scala.js") {
 <h2>Draw Stuff So Well Man</h2>
@@ -6,8 +9,26 @@
   <li>if mozilla, press r for red, g for green, b for black, and c to clear</li>
 </ul>
 
+<table id="ingame">
+	@for(player <- gamelist) {
+		<tr>
+		<td>please</td>
+		<td>@player.user</td>
+		</tr>
+	}
+</table>
+
 <canvas id="canvas" width="800" height="800" style="border:1px solid #000000;"></canvas>
 <script type="text/javascript">
 	example.ScalaJSExample().start();
 </script>
+
+<table id="lobby">
+	@for(player <- lobbylist) {
+		<tr>
+		<td>please</td>
+		<td>@player.user</td>
+		</tr>
+	}
+</table>
 }
